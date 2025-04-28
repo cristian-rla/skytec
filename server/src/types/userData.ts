@@ -4,5 +4,6 @@ export interface UserLogin {
 }
 
 export interface UserData extends UserLogin{
-    nombre:string
+    nombre:string;
+    correo:string;
 }
