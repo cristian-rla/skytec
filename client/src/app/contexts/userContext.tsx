@@ -6,6 +6,8 @@ dotenv.config()
 
 interface User {
   nombre: string;
+  correo: string, 
+  usuario: string
 }
 
 interface UserContextType {
