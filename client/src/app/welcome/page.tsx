@@ -1,14 +1,20 @@
 'use client'
 import { useUser } from '../contexts/userContext';
 import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
 export default function WelcomePage() {
-    const router = useRouter();
+  const router = useRouter();
   const { user } = useUser();
 
+  useEffect(() => {
+    if (!user) {
+      router.push('/'); 
+    }
+  }, [user, router]);
+
   if (!user) {
-    router.push('/');
-    return null;
+    return null; 
   }
 
   return (

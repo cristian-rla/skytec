@@ -5,17 +5,18 @@ import { useRouter } from 'next/navigation';
 
 export default function LoginPage() {
   const { login } = useUser();
-  const router = useRouter();  // Llama a useRouter directamente
+  const router = useRouter();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isRedirecting, setIsRedirecting] = useState(false);
 
   useEffect(() => {
+    // Verifica si el estado de redirección es verdadero antes de realizar la redirección
     if (isRedirecting) {
-      router.push("/welcome");  // Redirigir después de iniciar sesión
+      router.push("/welcome");
     }
-  }, [isRedirecting, router]);
+  }, [isRedirecting, router]); // Asegúrate de que se ejecute solo cuando isRedirecting cambie
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,7 +24,7 @@ export default function LoginPage() {
     const result = await login(username, password);
 
     if (result.success) {
-      setIsRedirecting(true);  // Cambiar el estado para iniciar la redirección
+      setIsRedirecting(true); // Inicia la redirección después de un login exitoso
     } else {
       setError(result.message || 'Error desconocido');
     }
