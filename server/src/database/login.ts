@@ -22,6 +22,9 @@ class LoginService{
     async getUserBy(data:UserLogin):Promise<UserData | undefined>{
         return this.data.find(user => user.usuario === data.usuario && user.contrasena === data.contrasena);
     }
+    async getUserByName(usuario:string):Promise<UserData | undefined>{
+        return this.data.find(user => user.usuario === usuario);
+    }
 }
 
 const singleLogin = new LoginService();

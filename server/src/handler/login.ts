@@ -9,8 +9,12 @@ class LoginHandler {
         try{
             const user = await loginController.verifyLogin(req.body);
             res.status(200).json({message: "Usuario encontrado !!", user});
-        } catch{
-            res.status(500).json({message: "No se encontró el usuario"});
+        } catch (error){
+            if (error instanceof Error)
+                res.status(500).json({message: error.message});
+            else
+                res.status(500).json({message: "Hubo un error en la búsqueda"});
+
         }
     }
 }
